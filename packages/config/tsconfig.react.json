@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "DOM/React preset. Use for: @unsupervised/ui, @unsupervised/renderer, @unsupervised/game-client, Next.js apps. jsx is react-jsx (new transform, no React-in-scope requirement). `types` is left empty so Node globals do not leak into browser code; packages that need specific ambient types should add them in their own tsconfig.json.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+    "types": []
+  }
+}

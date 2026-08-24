@@ -1,0 +1,31 @@
+# Permission manifest for the inline QA bridge commands defined
+# in `src/qa_bridge.rs` (Phase 2 of @unsupervised/qa-input-ws). Top-level
+# Tauri commands, not a plugin (see qa_bridge.rs header for
+# why). `tauri-build` discovers `permissions/*.toml` at compile
+# time + makes the declared permissions available to capability
+# grants by bare identifier (`allow-qa-bridge-*`, no plugin
+# prefix).
+#
+# DEBUG-ONLY. The qa_bridge module is `#[cfg(debug_assertions)]`-
+# gated; release builds strip the module AND its commands. The
+# capability lists these permissions unconditionally for
+# build-script simplicity, but the commands don't exist at
+# runtime in release. Calling them then would Tauri-error
+# before any code executes — defense in depth.
+
+"$schema" = "schemas/schema.json"
+
+[[permission]]
+identifier = "allow-qa-bridge-start"
+description = "Enables the `qa_bridge_start` command — binds the localhost WebSocket server + writes the discovery file."
+commands.allow = ["qa_bridge_start"]
+
+[[permission]]
+identifier = "allow-qa-bridge-stop"
+description = "Enables the `qa_bridge_stop` command — closes the WebSocket server + removes the discovery file."
+commands.allow = ["qa_bridge_stop"]
+
+[[permission]]
+identifier = "allow-qa-bridge-push"
+description = "Enables the `qa_bridge_push` command — forwards a frame to connected WS clients."
+commands.allow = ["qa_bridge_push"]

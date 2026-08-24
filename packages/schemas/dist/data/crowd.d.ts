@@ -1,0 +1,44 @@
+import { z } from 'zod';
+/** Reason the system fires `'crowd:agent-stuck'`. Apps narrow
+ *  on the value in their subscribers — e.g., teleport on
+ *  `'invalid-state'`, re-route on `'no-path'`. */
+export declare const CrowdStuckReasonSchema: z.ZodEnum<["no-path", "off-mesh", "invalid-state"]>;
+export type CrowdStuckReason = z.infer<typeof CrowdStuckReasonSchema>;
+/** Per-pair interaction policy for multi-crowd setups.
+ *
+ *  - `cooperative` — agents share avoidance via the SAME
+ *    dtCrowd; this is the "same team, same crowd" case. The
+ *    matrix doesn't actually need this entry — same-crowd
+ *    pairs are always cooperative because they live in one
+ *    `dtCrowd`. Listed for completeness + future-proofing
+ *    if cross-crowd cooperative ever ships.
+ *
+ *  - `opaque` — cross-crowd agents push each other apart via
+ *    the `applyCrossCrowdSeparation` post-step helper.
+ *    Mount & Blade / Total War shape (red team blocks blue
+ *    team).
+ *
+ *  - `transparent` — no cross-crowd interaction (the
+ *    default for unlisted pairs). Civilians phasing through
+ *    soldiers is the canonical use case. */
+export declare const CrowdInteractionPolicySchema: z.ZodEnum<["cooperative", "opaque", "transparent"]>;
+export type CrowdInteractionPolicy = z.infer<typeof CrowdInteractionPolicySchema>;
+/** Cross-crowd interaction matrix.
+ *
+ *  Shape: `matrix[crowdIdA]?.[crowdIdB]` = the policy crowd
+ *  A applies WHEN seeing crowd B's agents. The matrix is
+ *  not required to be symmetric — `red ↔ civilian` could be
+ *  `transparent` while `civilian ↔ red` is `opaque` (one-way
+ *  blocking is unusual but supported).
+ *
+ *  Unlisted pairs default to `transparent` (no interaction).
+ *  Self-pairs (e.g. `red ↔ red`) are ignored — same-crowd
+ *  avoidance is always handled inside dtCrowd, not via this
+ *  matrix.
+ *
+ *  Apps construct this object at boot and pass it once to
+ *  `applyCrossCrowdSeparation`; the helper resolves the
+ *  policy per (system, peer-system) pair each tick. */
+export declare const CrowdInteractionMatrixSchema: z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodEnum<["cooperative", "opaque", "transparent"]>>>;
+export type CrowdInteractionMatrix = z.infer<typeof CrowdInteractionMatrixSchema>;
+//# sourceMappingURL=crowd.d.ts.map

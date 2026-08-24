@@ -1,0 +1,4 @@
+{
+  "extends": "@unsupervised/config/tsconfig.base.json",
+  "files": []
+}

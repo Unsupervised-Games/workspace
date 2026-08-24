@@ -1,0 +1,20 @@
+node_modules/
+.turbo/
+.next/
+out/
+*.tsbuildinfo
+
+# Build output, scoped to where builds happen.
+#
+# NOT a blanket `dist/`: the vendored pipeline under packages/ ships its `dist/`
+# as the delivered artifact and must be committed. A bare `dist/` would exclude
+# those directories, and git cannot re-include a file whose parent directory is
+# excluded — so a `!packages/*/dist/**` negation below it would silently do
+# nothing. Committing the built output is what lets `pnpm install` link the
+# `forge` and `packager` bins on the FIRST install: pnpm skips a bin whose
+# target does not exist yet, and never revisits it.
+games/*/dist/
+apps/*/dist/
+
+# Emitted by forge on every dev/build — derived, never committed.
+**/lib/generated/

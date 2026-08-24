@@ -1,0 +1,34 @@
+# Permission manifest for the inline keychain commands defined in
+# `src/keychain.rs` — the OS credential-vault backend for the
+# workbench's secure TokenStore. Top-level Tauri commands, not a plugin
+# (see keychain.rs / qa_bridge.rs headers for why). `tauri-build`
+# discovers `permissions/*.toml` at compile time + makes the declared
+# permissions available to capability grants by bare identifier
+# (`allow-keychain-*`, no plugin prefix).
+#
+# FEATURE-GATED. The keychain module + its commands compile only under
+# the `keychain` Cargo feature. This manifest is copied into every app's
+# synthesized scaffold regardless (harmless — it only DECLARES grantable
+# permissions), but only the workbench GRANTS them (via
+# tauri-capabilities/workbench-keychain.json) and only the workbench is
+# built with the feature. A build without the feature simply has no
+# command behind the permission; an invoke would Tauri-error before any
+# code runs — the same defense-in-depth posture as the debug-gated
+# qa_bridge commands.
+
+"$schema" = "schemas/schema.json"
+
+[[permission]]
+identifier = "allow-keychain-get"
+description = "Enables the `keychain_get` command — reads a secret from the OS credential vault."
+commands.allow = ["keychain_get"]
+
+[[permission]]
+identifier = "allow-keychain-set"
+description = "Enables the `keychain_set` command — writes a secret to the OS credential vault."
+commands.allow = ["keychain_set"]
+
+[[permission]]
+identifier = "allow-keychain-delete"
+description = "Enables the `keychain_delete` command — deletes a secret from the OS credential vault."
+commands.allow = ["keychain_delete"]

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "kind": "workspace",
+  "id": "workspace",
+  "displayName": "Atelier workspace",
+  "description": "A Turborepo for one studio's games, with the Atelier pipeline vendored under packages/.",
+  "substitute": ["package.json", "README.md"],
+  "placeholders": {
+    "name": "{{WORKSPACE_NAME}}",
+    "slug": "{{WORKSPACE_SLUG}}"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@unsupervised/forge",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "forge": "./dist/cli.js"
+  },
+  "dependencies": {
+    "@unsupervised/schemas": "workspace:*",
+    "@gltf-transform/core": "^4.1.0",
+    "@gltf-transform/extensions": "^4.1.0",
+    "@gltf-transform/functions": "^4.1.0",
+    "chokidar": "^4.0.3",
+    "commander": "^12.1.0",
+    "draco3dgltf": "^1.5.7",
+    "fluent-ffmpeg": "^2.1.3",
+    "fs-extra": "^11.2.0",
+    "glob": "^11.0.0",
+    "jiti": "^2.4.0",
+    "maxrects-packer": "^2.7.3",
+    "meshoptimizer": "^0.18.1",
+    "recast-navigation": "^0.41.0",
+    "sharp": "^0.33.5"
+  },
+  "peerDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@gpu-tex-enc/basis": "^1.16.4"
+  },
+  "peerDependenciesMeta": {
+    "@ffmpeg-installer/ffmpeg": {
+      "optional": true
+    },
+    "@gpu-tex-enc/basis": {
+      "optional": true
+    }
+  },
+  "private": true
+}

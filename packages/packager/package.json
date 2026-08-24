@@ -1,0 +1,16 @@
+{
+  "name": "@unsupervised/packager",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "packager": "./dist/cli.js"
+  },
+  "dependencies": {
+    "@tauri-apps/cli": "^2.1.0",
+    "commander": "^12.1.0",
+    "execa": "^9.5.0",
+    "fs-extra": "^11.2.0",
+    "picocolors": "^1.1.1"
+  },
+  "private": true
+}

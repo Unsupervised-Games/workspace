@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "Universal TypeScript foundation. Every package in this monorepo — headless, Node, or DOM — extends this file. Rationale for an AI-first workflow: we lock down as many silent-failure modes as possible so the model cannot paper over bugs with implicit any, fallthroughs, or unchecked indexing. Keep this file minimal and environment-neutral; DOM/Node specifics live in the sibling presets.",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "incremental": true
+  },
+  "exclude": ["node_modules", "dist", "build", ".turbo", ".next"]
+}

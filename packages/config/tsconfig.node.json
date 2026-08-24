@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "Node/engine/pipeline preset. Use for: @unsupervised/core, @unsupervised/engine-2d, @unsupervised/engine-3d, tooling packages, build scripts, anything that must NOT assume a DOM. (@unsupervised/schemas extends the base directly — it has no Node runtime needs.) lib is kept to ESNext only so accidental `document`/`window` usage surfaces as a type error rather than a runtime crash.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "types": ["node"]
+  }
+}
